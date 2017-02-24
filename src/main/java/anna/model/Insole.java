@@ -9,8 +9,7 @@ public class Insole {
 	private String category;
 	
 	
-	public Insole() {
-	}
+	public Insole() {}
 
 	public Insole(int size, String category) {
 		this.size = size;

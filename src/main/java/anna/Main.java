@@ -42,27 +42,34 @@ public class Main {
      public static Shoe findShoeById(long id) {
         Session session = sessionFactory.openSession();
         Shoe shoe = session.get(Shoe.class,id);  
+        for(Insole i : shoe.getInsole()){
+        	System.out.println(i);
+        }
         session.close();
         return shoe;
-}
+     }
+     
+   
 	
 	public static void main(String[] args) {
+		
+		
 	
 		Shoe shoe = new Shoe("Left Shoe", 45);
 		long id = (long)save(shoe);
 		shoe = findShoeById(id);
 
 		Insole insoleone = new Insole(45, "sport insole");
-		Insole insoletwo = new Insole(45, "gell insole");
+		Insole insoletwo = new Insole(46, "gell insole");
 		
 		shoe.getInsole().add(insoleone);
 		shoe.getInsole().add(insoletwo);
 		
-		id = (long)save(shoe);
+		update(shoe);
+		shoe = findShoeById(id);
 		
-		for (Insole e : findShoeById(id).getInsole()){
-			System.out.println(e);
-		}
+        
+	
 	}
 
 }
